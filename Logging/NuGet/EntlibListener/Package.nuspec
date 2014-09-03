@@ -11,7 +11,7 @@
     <iconUrl>http://go.microsoft.com/fwlink/?LinkId=323611</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Application Insights Entlib TraceListener is a custom target allowing you to send LogEntry messages to Application Insights. Application Insights will collect your logs from multiple sources and provide rich powerful search capabilities. This functionality depends on Microsoft Monitoring Agent being installed onto your machine, http://go.microsoft.com/fwlink/?LinkID=328052.</description>
-    <summary>Application Insights Entlib TraceListener is supported on .NET FX 4.0 for Ent lib 5.0.505.1. .NET FX 4.5 version supports Entlib 6.0.0 version.</summary>
+    <summary>Application Insights Entlib TraceListener is supported on .NET FX 4.0 for Ent lib 5.0.505.1. and .NET FX 4.5 version supports Entlib 6.0.0 version.</summary>
     <copyright>$copyright$</copyright>
     <releaseNotes />
     <tags>Analytics ApplicationInsights Telemetry ASP.NET EnterpriseLibrary FormattedTraceListener EntLib ASMX Web Azure Server Services ASPX Websites Role MMA Logging Log Tracing TraceListener </tags>
