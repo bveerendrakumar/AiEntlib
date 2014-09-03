@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="SharedProjectFile_SccProperties">
+    <SharedProjectFile_ProjectGuid>{775f88f7-23bf-4df6-85d9-7dc9822d29f4}</SharedProjectFile_ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>d3873b31-1b15-4b53-96d2-877752f0ad84</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Microsoft.ApplicationInsights</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Serialization\ApplicationInsightsContractResolver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serialization\DictionaryConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serialization\EnumerableConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serialization\ExceptionConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serialization\FormatProviderConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serialization\ObjectArrayConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serialization\ObjectConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serialization\Serializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serialization\StackConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serialization\StringifiedJsonTextWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tracer.cs" />
+  </ItemGroup>
+</Project>

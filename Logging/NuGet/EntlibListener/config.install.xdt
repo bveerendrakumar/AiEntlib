@@ -1,0 +1,38 @@
+﻿<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <!--
+  Complex workaround to make sure configSections is the first child of configuration (otherwise it throws)
+  see http://stackoverflow.com/questions/18737022/xdt-transform-insertbefore-locator-condition-is-ignored for details
+  -->
+  <configSections xdt:Transform="InsertBefore(/configuration/*[1])" />
+  <configSections xdt:Locator="XPath(/configuration/configSections[last()])">
+    <section name="loggingConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings, Microsoft.Practices.EnterpriseLibrary.Logging" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)"/>    
+  </configSections>
+  <configSections xdt:Transform="RemoveAll" xdt:Locator="Condition(count(*)=0)" />
+
+  <loggingConfiguration tracingEnabled="true" defaultCategory="General" logWarningsWhenNoCategoriesMatch="true" xdt:Transform="InsertIfMissing">
+    <listeners xdt:Transform="InsertIfMissing">
+      <add name="AppInsights TraceListener" type="Microsoft.ApplicationInsights.EntlibTraceListener.FormattedAppInsightsTraceListener, Microsoft.ApplicationInsights.EntlibTraceListener" listenerDataType="Microsoft.ApplicationInsights.EntlibTraceListener.Configuration.FormattedAppInsightsTraceListenerData, Microsoft.ApplicationInsights.EntlibTraceListener" filter="All" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" />
+    </listeners>
+    <categorySources xdt:Transform="InsertIfMissing">
+      <add switchValue="All" name="General" xdt:Transform="InsertIfMissing">
+        <listeners xdt:Transform="InsertIfMissing">
+          <add name="AppInsights TraceListener" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)"/>
+        </listeners>
+      </add>
+    </categorySources>
+    <specialSources xdt:Transform="InsertIfMissing">
+      <allEvents switchValue="All" name="All Events" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" />
+      <notProcessed switchValue="All" name="Unprocessed Category" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)">
+        <listeners xdt:Transform="InsertIfMissing">
+          <add name="AppInsights TraceListener" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" />
+        </listeners>
+      </notProcessed>
+      <errors switchValue="All" name="Logging Errors &amp; Warnings" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" >
+        <listeners xdt:Transform="InsertIfMissing" >
+          <add name="AppInsights TraceListener" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" />
+        </listeners>
+      </errors>
+    </specialSources>
+  </loggingConfiguration>
+</configuration>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <loggingConfiguration>
+    <listeners>
+      <add name="AppInsights TraceListener" type="Microsoft.ApplicationInsights.EntlibTraceListener.FormattedAppInsightsTraceListener, Microsoft.ApplicationInsights.EntlibTraceListener" listenerDataType="Microsoft.ApplicationInsights.EntlibTraceListener.Configuration.FormattedAppInsightsTraceListenerData, Microsoft.ApplicationInsights.EntlibTraceListener" componentId=""  filter="All" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+    </listeners>
+    <categorySources>
+      <add switchValue="All" name="General">
+        <listeners>
+          <add name="AppInsights TraceListener" xdt:Transform="Remove" xdt:Locator="Match(name)"/>          
+        </listeners>
+      </add>
+    </categorySources>
+    <specialSources>
+      <allEvents switchValue="All" name="All Events"/>
+      <notProcessed switchValue="All" name="Unprocessed Category">
+        <listeners>
+          <add name="AppInsights TraceListener" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+        </listeners>
+      </notProcessed>
+      <errors switchValue="All" name="Logging Errors &amp; Warnings">
+        <listeners>
+          <add name="AppInsights TraceListener" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+        </listeners>
+      </errors>
+    </specialSources>
+    <listeners xdt:Transform="Remove" xdt:Locator="Condition(count(child::*) = 0)"/>
+    <add xdt:Transform="Remove" xdt:Locator="Condition(count(child::*) = 0)"/>
+    <notProcessed xdt:Transform="Remove" xdt:Locator="Condition(count(child::*) = 0)"/>
+    <allEvents xdt:Transform="Remove" xdt:Locator="Condition(count(child::*) = 0)"/>
+    <errors xdt:Transform="Remove" xdt:Locator="Condition(count(child::*) = 0)"/>
+    <specialSources xdt:Transform="Remove" xdt:Locator="Condition(count(child::*) = 0)"/>
+    <categorySources xdt:Transform="Remove" xdt:Locator="Condition(count(child::*) = 0)"/>
+  </loggingConfiguration>
+
+  <loggingConfiguration xdt:Transform="Remove" xdt:Locator="Condition(count(child::*) = 0)"/>
+
+  <configSections>
+    <section name="loggingConfiguration" xdt:Transform="Remove" xdt:Locator="Condition(@name = 'loggingConfiguration' and count(/configuration/loggingConfiguration) = 0)"/>
+  </configSections>
+
+  <configSections xdt:Transform="Remove" xdt:Locator="Condition(count(child::*) = 0)"/>
+
+
+</configuration>
