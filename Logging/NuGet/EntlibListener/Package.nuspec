@@ -10,22 +10,22 @@
     <projectUrl>https://github.com/bveerendrakumar/AIEntlib/wiki</projectUrl>
     <iconUrl>http://go.microsoft.com/fwlink/?LinkId=323611</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Application Insights Entlib TraceListener is a custom target allowing you to send LogEntry messages to Application Insights. Application Insights will collect your logs from multiple sources and provide rich powerful search capabilities. This functionality depends on Microsoft Monitoring Agent being installed onto your machine, http://go.microsoft.com/fwlink/?LinkID=328052.</description>
+    <description>Application Insights Entlib TraceListener is a custom listener allowing you to send LogEntry messages to Application Insights.</description>
     <summary>Application Insights Entlib TraceListener is supported on .NET FX 4.0 for Ent lib 5.0.505.1. and .NET FX 4.5 version supports Entlib 6.0.0 version.</summary>
     <copyright>$copyright$</copyright>
     <releaseNotes />
     <tags>Analytics ApplicationInsights Telemetry ASP.NET EnterpriseLibrary FormattedTraceListener EntLib ASMX Web Azure Server Services ASPX Websites Role MMA Logging Log Tracing TraceListener </tags>
     
     <dependencies>      
-      <group>
-        <dependency id="Microsoft.ApplicationInsights" version="0.10.0-build17704" />        
-        <dependency id="Newtonsoft.Json" version="6.0.3" />
-      </group>
-      <group targetFramework="net45">
-        <dependency id="EnterpriseLibrary.Logging" version="6.0.1304.0" />
+     <group targetFramework="net45">
+       <dependency id="Microsoft.ApplicationInsights" version="[0.10.0-build17704]" />
+       <dependency id="Newtonsoft.Json" version="6.0.3" />
+        <dependency id="EnterpriseLibrary.Logging" version="[6.0.1304.0]" />
       </group>
       <group targetFramework="net40">
-        <dependency id="EnterpriseLibrary.Logging" version="5.0.505.1" />        
+        <dependency id="Microsoft.ApplicationInsights" version="[0.10.0-build17704]" />
+        <dependency id="Newtonsoft.Json" version="6.0.3" />
+        <dependency id="EnterpriseLibrary.Logging" version="[5.0.505.1]" />        
       </group>           
     </dependencies>
   </metadata>
@@ -37,6 +37,9 @@
     <!-- Binaries for .NET 4.5 projects -->
     <file src="$configuration$\Logging\Adapters\Entlib.Net45\Microsoft.ApplicationInsights.EntlibTraceListener.dll" target="lib\net45" />
     <file src="$configuration$\Logging\Adapters\Entlib.Net45\Microsoft.ApplicationInsights.EntlibTraceListener.pdb" target="lib\net45" />
+
+    <file src="**\*.cs" target="src" />
+
 
     <!--- PowerShell scripts -->
     <file src="$configuration$\Logging\NuGet\EntlibListener\Install.ps1" target="tools"/>
