@@ -1,1 +1,1 @@
-Welcome to Entlibadapter for app insights.
+Welcome to enterprise library adapter for app insights.
