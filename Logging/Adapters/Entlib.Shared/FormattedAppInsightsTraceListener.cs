@@ -12,15 +12,15 @@
 
 using System;
 using Microsoft.ApplicationInsights.EntlibTraceListener.Configuration;
-using Microsoft.ApplicationInsights.Tracing;
-using Microsoft.ApplicationInsights.Tracing.Serialization;
+using Microsoft.ApplicationInsights.DataContracts;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
-using Tracer = Microsoft.ApplicationInsights.Tracing.Tracer;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Microsoft.ApplicationInsights.EntlibTraceListener
 {
@@ -35,7 +35,7 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener
         /// <summary>
         /// The logging controller we will be using.
         /// </summary>
-        private Tracer tracer;
+        private TelemetryClient _telemetryClient;
 
         private string instrumentationKey;
         #region Constructors
@@ -96,20 +96,17 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener
 
                set
                {
-                   this.instrumentationKey = value;
-                   this.tracer.InstrumentationKey = value;
+                   this.instrumentationKey = value;                   
                } 
         }
 
         /// <summary>
         /// The logging controller we will be using.
         /// </summary>
-        internal Tracer Tracer
+        internal TelemetryClient TelemetryClient
         {
-            get
-            {
-                return this.tracer;
-            }
+            get { return this._telemetryClient; }
+            set { this._telemetryClient = value; }
         }
         
         #endregion
@@ -125,8 +122,9 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener
             {
                 return;
             }
-
-            this.tracer.LogMessage(message);
+            var trace = new TraceTelemetry(message);
+            this.CreateTraceData(null, trace, TraceEventType.Verbose, new TraceEventCache());
+            this.TelemetryClient.Track(trace);
         }
 
         /// <summary>
@@ -157,26 +155,21 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener
             }
 
             var formattedMessage = string.Empty;
-            ApplicationInsightsTraceData metaData = null;
-            object[] additionalProperties = null;
             var log = data as LogEntry;
+            TraceTelemetry trace = null;
             if (log != null)
             {
-                formattedMessage = this.Formatter != null ? this.Formatter.Format(log) : log.Message;
-                additionalProperties = this.FormatLogEntryForAppInsights(log); 
+                formattedMessage = this.Formatter != null ? this.Formatter.Format(log) : log.Message;                
+                trace = new TraceTelemetry(formattedMessage);
+                this.CreateTraceData(log, trace, eventType, eventCache);
             }                        
             else if (data is string)
             {
-                metaData = new ApplicationInsightsTraceData { TraceEventType = TraceEventType.Verbose };
-                this.tracer.LogMessageWithData((string)data, metaData);
-                return;
+                trace = new TraceTelemetry((string)data);
+                this.CreateTraceData(null, trace, TraceEventType.Verbose, eventCache);                
             }
 
-            metaData = this.CreateTraceData(eventCache, eventType, id);
-
-            metaData.AdditionalData = additionalProperties; 
-            string message = string.IsNullOrEmpty(formattedMessage) ? (data == null ? string.Empty : data.ToString()) : formattedMessage;
-            this.tracer.LogMessageWithData(message, metaData);
+            this.TelemetryClient.Track(trace);
         }
 
         /// <summary>
@@ -211,81 +204,59 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener
         
         private void InitializeLogger()
         {
-            this.tracer = new Tracer(this.InstrumentationKey);
-        }
-
-        private object[] FormatLogEntryForAppInsights(LogEntry logEntry)
-        {
-            return
-                 new object[]
-                {
-                    new { Message = logEntry.Message },
-
-                    new { ActivityId = logEntry.ActivityId },
-                     
-                    new { Categories = logEntry.Categories },
-
-                     new { LoggedSeverity = logEntry.LoggedSeverity },
-
-                     new { Priority = logEntry.Priority },
-
-                     new { Severity = logEntry.Severity },
-
-                     new { ProcessId = logEntry.ProcessId },
-
-                     new { ProcessName = logEntry.ProcessName },
-
-                     new { RelatedActivityId = logEntry.RelatedActivityId },
-
-                     new { Title = logEntry.Title },
-                      
-                     new { ErrorMessages = logEntry.ErrorMessages },
-
-                     new { AppDomainName = logEntry.AppDomainName },
-
-                     new { MachineName = logEntry.MachineName },
-
-                     new { ThreadId = logEntry.Win32ThreadId },
-                      
-                     new { ManagedThreadName = logEntry.ManagedThreadName },
-                      
-                     new { ExtendedProperties = logEntry.ExtendedProperties },                     
-                };
-        }
-
-        /// <summary>
-        /// Creates the trace data.
-        /// </summary>
-        /// <param name="eventCache">The event cache.</param>
-        /// <param name="eventType">Type of the event.</param>
-        /// <param name="id">The identifier.</param>
-        /// <returns>The trace meta data.</returns>
-        private ApplicationInsightsTraceData CreateTraceData(TraceEventCache eventCache, TraceEventType eventType, int id)
-        {
-            ApplicationInsightsTraceData metaData = new ApplicationInsightsTraceData
+            this._telemetryClient = new TelemetryClient();
+            if (!string.IsNullOrEmpty(this.InstrumentationKey))
             {
-                TraceEventType = eventType,
-                EventId = id,
-            };
-
-            if ((this.TraceOutputOptions & TraceOptions.LogicalOperationStack) == TraceOptions.LogicalOperationStack)
-            {
-                metaData.LogicalOperationStack = eventCache.LogicalOperationStack;
+                this.TelemetryClient.Context.InstrumentationKey = this.InstrumentationKey;
             }
+        }
 
+        private void CreateTraceData(LogEntry logEntry, TraceTelemetry trace, TraceEventType eventType, TraceEventCache eventCache)
+        {
+            IDictionary<string, string> propertyBag = trace.Context.Properties;
+            if (null != logEntry)
+            {
+                propertyBag.Add("SourceType", logEntry.GetType().ToString());
+                propertyBag.Add("LoggedSeverity", logEntry.LoggedSeverity);
+         if (null != logEntry.ActivityId)
+                {
+                    propertyBag.Add("ActivityId", logEntry.ActivityId.ToString());
+                }
+                if (null != logEntry.CategoriesStrings)
+                {
+                    propertyBag.Add("Categories", string.Join(",", logEntry.CategoriesStrings));
+                }
+                
+                propertyBag.Add("Priority", logEntry.Priority.ToString());
+                propertyBag.Add("ProcessId", logEntry.ProcessId);
+                propertyBag.Add("ProcessName", logEntry.ProcessName);
+                if (null != logEntry.RelatedActivityId)
+                {
+                    propertyBag.Add("RelatedActivityId", logEntry.RelatedActivityId.ToString());
+                }
+                propertyBag.Add("Title", logEntry.Title);
+                propertyBag.Add("ErrorMessages", logEntry.ErrorMessages);
+                propertyBag.Add("AppDomainName", logEntry.AppDomainName);
+                propertyBag.Add("ManagedThreadName", logEntry.ManagedThreadName);
+                propertyBag.Add("MachineName", logEntry.MachineName);
+                if (null != logEntry.ExtendedProperties)
+                {
+                    foreach (var extendedProperty in logEntry.ExtendedProperties)
+                    {
+                        propertyBag.Add(string.Format("ExtendedProperties.{0}", extendedProperty.Key), JsonConvert.SerializeObject(extendedProperty.Value));
+                    }
+                }
+            }
             if ((this.TraceOutputOptions & TraceOptions.Timestamp) == TraceOptions.Timestamp)
             {
-                metaData.Timestamp = eventCache.Timestamp;
+                propertyBag.Add("Timestamp", eventCache.Timestamp.ToString());
             }
 
-            if ((this.TraceOutputOptions & TraceOptions.Callstack) == TraceOptions.Callstack)
-            {
-                metaData.Callstack = eventCache.Callstack;
-            }
-
-            return metaData;
+            propertyBag.Add("TraceEventType", eventType.ToString());
+            
         }
 
+        
         #endregion private methods
     }
 }

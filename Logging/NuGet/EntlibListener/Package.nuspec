@@ -8,7 +8,7 @@
     <owners>Microsoft</owners>
     <licenseUrl>http://go.microsoft.com/fwlink/?LinkID=391182</licenseUrl>
     <projectUrl>https://github.com/bveerendrakumar/AIEntlib/wiki</projectUrl>
-    <iconUrl>http://go.microsoft.com/fwlink/?LinkId=323611</iconUrl>
+    <iconUrl>$image$</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Application Insights Entlib TraceListener is a custom listener allowing you to send LogEntry messages to Application Insights.</description>
     <summary>Application Insights Entlib TraceListener is supported on .NET FX 4.0 for Ent lib 5.0.505.1. and .NET FX 4.5 version supports Entlib 6.0.0 version.</summary>
@@ -18,12 +18,12 @@
     
     <dependencies>      
      <group targetFramework="net45">
-       <dependency id="Microsoft.ApplicationInsights" version="[0.10.0-build17704]" />
+       <dependency id="Microsoft.ApplicationInsights" version="[0.11.1-build00694]" />
        <dependency id="Newtonsoft.Json" version="6.0.3" />
         <dependency id="EnterpriseLibrary.Logging" version="[6.0.1304.0]" />
       </group>
       <group targetFramework="net40">
-        <dependency id="Microsoft.ApplicationInsights" version="[0.10.0-build17704]" />
+        <dependency id="Microsoft.ApplicationInsights" version="[0.11.1-build00694]" />
         <dependency id="Newtonsoft.Json" version="6.0.3" />
         <dependency id="EnterpriseLibrary.Logging" version="[5.0.505.1]" />        
       </group>           

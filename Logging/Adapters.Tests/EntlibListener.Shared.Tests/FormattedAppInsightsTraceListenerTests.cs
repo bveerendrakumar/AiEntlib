@@ -9,6 +9,7 @@
 // </copyright>
 
 using Microsoft.ApplicationInsights.EntlibTraceListener.Tests.Configuration;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
@@ -75,8 +76,8 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener.Tests
             {
                 Filter = new EventTypeFilter(SourceLevels.Information)
             };
-            var channel = this.adapterHelper.Channel;
-            listener.Tracer.Context.TelemetryChannel = channel;
+
+            listener.TelemetryClient = GetTelemetryClientWithCustomChannel();
 
             listener.TraceData(new TraceEventCache(), "MockCateogry", TraceEventType.Error, 0, new LogEntry("message", "MockCateogry", 0, 0, TraceEventType.Error, "title", null));
 
@@ -173,12 +174,20 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener.Tests
             {
                 return;
             }
-            var channel = this.adapterHelper.Channel;
-            listener.Tracer.Context.TelemetryChannel = channel;
+            listener.TelemetryClient = GetTelemetryClientWithCustomChannel();
 
             LogSource logSource;
             this.writer.TraceSources.TryGetValue("General", out logSource);
-        }        
+        }
+
+        private TelemetryClient GetTelemetryClientWithCustomChannel()
+        {
+            var config = TelemetryConfiguration.Active;
+            config.TelemetryChannel =  this.adapterHelper.Channel;
+            var telemetryClient = new TelemetryClient(config);
+            telemetryClient.Context.InstrumentationKey = this.adapterHelper.InstrumentationKey;
+            return telemetryClient;
+        }
 
         private string GetConditionalListenerName()
         {

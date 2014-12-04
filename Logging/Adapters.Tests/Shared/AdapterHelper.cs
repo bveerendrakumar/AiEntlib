@@ -10,7 +10,8 @@
 
 using System.Linq;
 using System.Threading;
-using Microsoft.ApplicationInsights.ObjectModel;
+using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.ApplicationInsights.Channel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.ApplicationInsights.Tracing.Tests
@@ -58,7 +59,7 @@ namespace Microsoft.ApplicationInsights.Tracing.Tests
 
                     Assert.AreEqual(expectedTraceCount, sentItems.Length, "All messages are received by the channel");
                     Assert.IsNotNull(telemetry, "telemetry collection is not null");
-                    Assert.AreEqual(instrumentationKey, telemetry.InstrumentationKey, "The correct instrumentation key was used");
+                    Assert.AreEqual(instrumentationKey, telemetry.Context.InstrumentationKey, "The correct instrumentation key was used");
                     break;
                 }
 

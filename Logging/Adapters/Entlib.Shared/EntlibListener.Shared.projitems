@@ -9,7 +9,6 @@
     <Import_RootNamespace>EntlibListener.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ApplicationInsightsTraceData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\Fluent\ILoggingConfigurationSendToAppInsightsTraceListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\Fluent\SendToAppInsightsTraceListenerExtension.cs" />

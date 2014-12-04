@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30626.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{EE933574-C82B-4E59-A0D1-05328197B937}"
 EndProject
@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F1B61C
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "Adapters\Shared\Shared.shproj", "{D3873B31-1B15-4B53-96D2-877752F0AD84}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters.Tests", "Adapters.Tests", "{2FCC45B3-D820-405D-87FA-467C96465BB1}"
 EndProject
@@ -40,16 +38,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntlibListener.NuGet", "NuG
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Adapters.Tests\EntlibListener.Shared.Tests\EntlibListener.Shared.Tests.projitems*{e518c5e7-6576-4363-b4b0-097636f19095}*SharedItemsImports = 4
 		Adapters.Tests\Shared\Adapters.Shared.Tests.projitems*{e518c5e7-6576-4363-b4b0-097636f19095}*SharedItemsImports = 4
-		Adapters.Tests\EntlibListener.Shared.Tests\EntlibListener.Shared.Tests.projitems*{b4b1edca-767d-4ea3-9f46-5ca8d2b84126}*SharedItemsImports = 4
+		Adapters.Tests\EntlibListener.Shared.Tests\EntlibListener.Shared.Tests.projitems*{e518c5e7-6576-4363-b4b0-097636f19095}*SharedItemsImports = 4
 		Adapters.Tests\Shared\Adapters.Shared.Tests.projitems*{b4b1edca-767d-4ea3-9f46-5ca8d2b84126}*SharedItemsImports = 4
+		Adapters.Tests\EntlibListener.Shared.Tests\EntlibListener.Shared.Tests.projitems*{b4b1edca-767d-4ea3-9f46-5ca8d2b84126}*SharedItemsImports = 4
 		Adapters\Entlib.Shared\EntlibListener.Shared.projitems*{94d8852e-ce8a-4688-9030-88e553b1810e}*SharedItemsImports = 13
 		Adapters\Entlib.Shared\EntlibListener.Shared.projitems*{c64fe896-f9da-44ba-b0cf-cee39a06a080}*SharedItemsImports = 4
-		Adapters\Shared\Shared.projitems*{c64fe896-f9da-44ba-b0cf-cee39a06a080}*SharedItemsImports = 4
 		Adapters\Entlib.Shared\EntlibListener.Shared.projitems*{da515513-bc65-4b59-86a6-603e9a1e432a}*SharedItemsImports = 4
-		Adapters\Shared\Shared.projitems*{da515513-bc65-4b59-86a6-603e9a1e432a}*SharedItemsImports = 4
-		Adapters\Shared\Shared.projitems*{d3873b31-1b15-4b53-96d2-877752f0ad84}*SharedItemsImports = 13
 		Adapters.Tests\Shared\Adapters.Shared.Tests.projitems*{fa775630-7917-4a99-a78c-fba46edf685c}*SharedItemsImports = 13
 		Adapters.Tests\EntlibListener.Shared.Tests\EntlibListener.Shared.Tests.projitems*{e6124986-1221-4da7-9bc4-8aee88f50595}*SharedItemsImports = 13
 	EndGlobalSection
@@ -181,7 +176,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D3873B31-1B15-4B53-96D2-877752F0AD84} = {EE933574-C82B-4E59-A0D1-05328197B937}
 		{FA775630-7917-4A99-A78C-FBA46EDF685C} = {2FCC45B3-D820-405D-87FA-467C96465BB1}
 		{94D8852E-CE8A-4688-9030-88E553B1810E} = {EE933574-C82B-4E59-A0D1-05328197B937}
 		{DA515513-BC65-4B59-86A6-603E9A1E432A} = {EE933574-C82B-4E59-A0D1-05328197B937}
@@ -192,7 +186,7 @@ Global
 		{780564F8-C263-4ADA-9B0A-A31542996D1F} = {4765948E-1A4D-4F8E-974C-6078C746ABEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = ity.2.1.505.0\lib\NET35;ity.Interception.2.1.505.0\lib\NET35;terpriseLibrary.Common.5.0.505.0\lib\NET35;terpriseLibrary.Logging.5.0.505.1\lib\NET35
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = terpriseLibrary.Logging.6.0.1304.0\lib\NET45;terpriseLibrary.Common.6.0.1304.0\lib\NET45
+		EnterpriseLibraryConfigurationToolBinariesPath = ity.2.1.505.0\lib\NET35;ity.Interception.2.1.505.0\lib\NET35;terpriseLibrary.Common.5.0.505.0\lib\NET35;terpriseLibrary.Logging.5.0.505.1\lib\NET35
 	EndGlobalSection
 EndGlobal

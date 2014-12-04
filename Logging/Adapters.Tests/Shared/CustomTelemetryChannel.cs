@@ -13,7 +13,8 @@
 namespace Microsoft.ApplicationInsights
 {
     using System.Collections.Generic;
-    using Microsoft.ApplicationInsights.ObjectModel;
+    using Microsoft.ApplicationInsights.Channel;
+    using Microsoft.ApplicationInsights.DataContracts;
 
     internal class CustomTelemetryChannel :
         ITelemetryChannel
@@ -51,6 +52,12 @@ namespace Microsoft.ApplicationInsights
 
         public void Dispose()
         {
+        }
+
+        public bool DeveloperMode
+        {
+            get; 
+            set; 
         }
     }
 }

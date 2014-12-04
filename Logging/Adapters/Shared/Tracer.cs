@@ -32,11 +32,7 @@ namespace Microsoft.ApplicationInsights.Tracing
         /// </summary>
         private const int MessageMaxLength = 32768;
 
-        /// <summary>
-        /// Application insights telemetry context.
-        /// </summary>
-        private readonly TelemetryContext telemetryContext;
-
+        
         #endregion
 
         #region C'tor
