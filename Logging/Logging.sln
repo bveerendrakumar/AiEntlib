@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{EE933574-C82B-4E59-A0D1-05328197B937}"
 EndProject
@@ -186,7 +186,7 @@ Global
 		{780564F8-C263-4ADA-9B0A-A31542996D1F} = {4765948E-1A4D-4F8E-974C-6078C746ABEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = terpriseLibrary.Logging.6.0.1304.0\lib\NET45;terpriseLibrary.Common.6.0.1304.0\lib\NET45
 		EnterpriseLibraryConfigurationToolBinariesPath = ity.2.1.505.0\lib\NET35;ity.Interception.2.1.505.0\lib\NET35;terpriseLibrary.Common.5.0.505.0\lib\NET35;terpriseLibrary.Logging.5.0.505.1\lib\NET35
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = terpriseLibrary.Logging.6.0.1304.0\lib\NET45;terpriseLibrary.Common.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal
