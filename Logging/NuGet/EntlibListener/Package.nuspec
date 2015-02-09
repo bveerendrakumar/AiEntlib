@@ -18,12 +18,12 @@
     
     <dependencies>      
      <group targetFramework="net45">
-       <dependency id="Microsoft.ApplicationInsights" version="[0.12.0-build17386]" />
+       <dependency id="Microsoft.ApplicationInsights" version="[0.13.0-build26067]" />
        <dependency id="Newtonsoft.Json" version="6.0.3" />
         <dependency id="EnterpriseLibrary.Logging" version="[6.0.1304.0]" />
       </group>
       <group targetFramework="net40">
-        <dependency id="Microsoft.ApplicationInsights" version="[0.12.0-build17386]" />
+        <dependency id="Microsoft.ApplicationInsights" version="[0.13.0-build26067]" />
         <dependency id="Newtonsoft.Json" version="6.0.3" />
         <dependency id="EnterpriseLibrary.Logging" version="[5.0.505.1]" />        
       </group>           
