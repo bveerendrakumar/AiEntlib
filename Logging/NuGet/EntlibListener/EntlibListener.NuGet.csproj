@@ -18,7 +18,7 @@
     <PackageSpecFile>$(MSBuildProjectDirectory)\Package.nuspec</PackageSpecFile>
     <PackageVersionFile>$(BinRoot)\$(Configuration)\Logging\Adapters\Entlib.Net40\Microsoft.ApplicationInsights.EntlibTraceListener.dll</PackageVersionFile>
     <PackageSymbols>True</PackageSymbols>
-    <NuGetPackageImportStamp>b7ee8f6f</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>540ed809</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
@@ -52,12 +52,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ApplicationInsights, Version=0.13.0.26067, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ApplicationInsights, Version=0.14.0.20632, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\packages\Microsoft.ApplicationInsights.0.13.0-build26067\lib\net40\Microsoft.ApplicationInsights.dll</HintPath>
+      <HintPath>..\..\..\..\packages\Microsoft.ApplicationInsights.0.14.0-build20632\lib\net40\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.14.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.14-beta\lib\net45\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.16.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.16-beta\lib\net45\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -82,7 +83,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.14-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.14-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets'))" />
+    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.16-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.16-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets'))" />
   </Target>
   <PropertyGroup>
     <PreBuildEvent>copy $(ProjectDir)config.install.xdt $(TargetDir)Web.config.install.xdt /Y
@@ -95,15 +96,15 @@ copy $(ProjectDir)config.uninstall.xdt $(TargetDir)App.config.uninstall.xdt /Y</
     <Error Condition="!Exists('..\..\..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
     <Error Condition="Exists('..\..\..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
-  <Import Project="..\..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.14-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets" Condition="Exists('..\..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.14-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets')" />
   <Import Project="..\..\..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
     <Error Condition="!Exists('..\..\..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
     <Error Condition="Exists('..\..\..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
-  <Import Project="..\..\..\..\packages\Microsoft.ApplicationInsights.0.13.0-build26067\tools\net40\Microsoft.ApplicationInsights.targets" Condition="Exists('..\..\..\..\packages\Microsoft.ApplicationInsights.0.13.0-build26067\tools\net40\Microsoft.ApplicationInsights.targets')" />
+  <Import Project="..\..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.16-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets" Condition="Exists('..\..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.16-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets')" />
+  <Import Project="..\..\..\..\packages\Microsoft.ApplicationInsights.0.14.0-build20632\tools\net40\Microsoft.ApplicationInsights.targets" Condition="Exists('..\..\..\..\packages\Microsoft.ApplicationInsights.0.14.0-build20632\tools\net40\Microsoft.ApplicationInsights.targets')" />
   <Target Name="EnsureApplicationInsightsImported" BeforeTargets="BeforeBuild" Condition="'$(ApplicationInsightsImported)' == ''">
-    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.ApplicationInsights.0.13.0-build26067\tools\net40\Microsoft.ApplicationInsights.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." />
-    <Error Condition="Exists('..\..\..\..\packages\Microsoft.ApplicationInsights.0.13.0-build26067\tools\net40\Microsoft.ApplicationInsights.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." />
+    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.ApplicationInsights.0.14.0-build20632\tools\net40\Microsoft.ApplicationInsights.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." />
+    <Error Condition="Exists('..\..\..\..\packages\Microsoft.ApplicationInsights.0.14.0-build20632\tools\net40\Microsoft.ApplicationInsights.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." />
   </Target>
 </Project>

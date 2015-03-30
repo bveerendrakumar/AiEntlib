@@ -11,6 +11,8 @@
 // -----------------------------------------------------------------------
 
 using System;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.EntlibTraceListener.Configuration;
 using Microsoft.ApplicationInsights.DataContracts;
 using System.Diagnostics;
@@ -213,7 +215,7 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener
 
         private void CreateTraceData(LogEntry logEntry, TraceTelemetry trace, TraceEventType eventType, TraceEventCache eventCache)
         {
-            IDictionary<string, string> propertyBag = trace.Context.Properties;
+            IDictionary<string, string> propertyBag = trace.Properties;
             if (null != logEntry)
             {
                 propertyBag.Add("SourceType", string.Format("{0}: {1}","SourceType", logEntry.GetType().ToString()));
