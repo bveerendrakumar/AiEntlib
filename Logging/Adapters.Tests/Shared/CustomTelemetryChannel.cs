@@ -12,7 +12,6 @@
 
 namespace Microsoft.ApplicationInsights
 {
-    using System;
     using System.Collections.Generic;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -59,12 +58,6 @@ namespace Microsoft.ApplicationInsights
         {
             get; 
             set; 
-        }
-
-
-        public void Flush()
-        {
-            Array.Clear(this.SentItems, 0, this.SentItems.Length);
         }
     }
 }
