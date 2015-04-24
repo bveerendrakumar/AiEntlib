@@ -200,7 +200,6 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener
         }
 
         #endregion extending the listener
-
         
         #region private methods
         
@@ -218,15 +217,15 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener
             IDictionary<string, string> propertyBag = trace.Properties;
             if (null != logEntry)
             {
-                propertyBag.Add("SourceType", string.Format("{0}: {1}","SourceType", logEntry.GetType().ToString()));
+                propertyBag.Add("SourceType", logEntry.GetType().ToString());
                 propertyBag.Add("LoggedSeverity", logEntry.LoggedSeverity);
          if (null != logEntry.ActivityId)
                 {
-                    propertyBag.Add("ActivityId", string.Format("{0}: {1}", "ActivityId", logEntry.ActivityId.ToString()));
+                    propertyBag.Add("ActivityId", logEntry.ActivityId.ToString());
                 }
                 if (null != logEntry.CategoriesStrings)
                 {
-                    propertyBag.Add("Categories", string.Format("{0}: {1}", "Categories", string.Join(",", logEntry.CategoriesStrings)));
+                    propertyBag.Add("Categories", string.Join(",", logEntry.CategoriesStrings));
                 }
 
                 propertyBag.Add("Priority", logEntry.Priority.ToString());
@@ -234,12 +233,12 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener
                 propertyBag.Add("ProcessName", logEntry.ProcessName);
                 if (null != logEntry.RelatedActivityId)
                 {
-                    propertyBag.Add("RelatedActivityId", string.Format("{0}: {1}", "RelatedActivityId", logEntry.RelatedActivityId.ToString()));
+                    propertyBag.Add("RelatedActivityId", logEntry.RelatedActivityId.ToString());
                 }
-                propertyBag.Add("Title", string.Format("{0}: {1}", "Title", logEntry.Title));
-                propertyBag.Add("ErrorMessages", string.Format("{0}: {1}", "ErrorMessages", logEntry.ErrorMessages));
-                propertyBag.Add("AppDomainName", string.Format("{0}: {1}", "AppDomainName", logEntry.AppDomainName));
-                propertyBag.Add("ManagedThreadName", string.Format("{0}: {1}", "ManagedThreadName", logEntry.ManagedThreadName));
+                propertyBag.Add("Title", logEntry.Title);
+                propertyBag.Add("ErrorMessages", logEntry.ErrorMessages);
+                propertyBag.Add("AppDomainName", logEntry.AppDomainName);
+                propertyBag.Add("ManagedThreadName", logEntry.ManagedThreadName);
                 propertyBag.Add("MachineName", logEntry.MachineName);
                 if (null != logEntry.ExtendedProperties)
                 {
@@ -251,7 +250,7 @@ namespace Microsoft.ApplicationInsights.EntlibTraceListener
             }
             if ((this.TraceOutputOptions & TraceOptions.Timestamp) == TraceOptions.Timestamp)
             {
-                propertyBag.Add("Timestamp", string.Format("{0}: {1}", "Timestamp", eventCache.Timestamp.ToString()));
+                propertyBag.Add("Timestamp", eventCache.Timestamp.ToString());
             }
 
      }
