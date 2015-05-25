@@ -55,13 +55,13 @@ namespace Microsoft.ApplicationInsights
         {
         }
 
-        public bool DeveloperMode
+        public bool? DeveloperMode
         {
             get; 
             set; 
         }
 
-
+        
         public void Flush()
         {
             Array.Clear(this.SentItems, 0, this.SentItems.Length);
